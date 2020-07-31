@@ -6,10 +6,11 @@ $test = new ModuleService();
 $codigo = "";
 $nombre = "";
 $estado = "";
+$rol = "";
 $accion = "Agregar";
 
 if (isset($_POST["accion"]) && ($_POST["accion"] == 'Agregar')) {
-    $test->insert($_POST["codigo"], $_POST["nombre"], $_POST["estado"]);
+    $test->insert($_POST["codigo"], $_POST["nombre"], $_POST["estado"],$_POST["rol"]);
 } else if (isset($_POST["accion"]) && ($_POST["accion"] == "Modificar")) {
     $test->update($_POST["nombre"], $_POST["codigo"]);
 } else if (isset($_GET["update"])) {

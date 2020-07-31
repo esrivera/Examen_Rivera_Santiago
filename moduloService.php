@@ -5,9 +5,11 @@
 
     private $entity = "seg_rol";
 
-    function insert($codigo, $nombre, $estado) {
+    function insert($codigo, $nombre, $estado, $rol) {
         $stmt = $this->conex->prepare("INSERT INTO seg_modulo (COD_MODULO, NOMBRE, ESTADO) VALUES (?,?,?)");
         $stmt->bind_param('sss', $codigo, $nombre, $estado);
+        $stmt = $this->conex->prepare("INSERT INTO rol_modulo (COD_ROL, COD_MODULO) VALUES (?,?)");
+        $stmt->bind_param('ss', $codigo, $rol);
         $stmt->execute();
         $stmt->close();
     }
