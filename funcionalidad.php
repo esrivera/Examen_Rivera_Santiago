@@ -24,6 +24,7 @@ if (isset($_POST["accion"]) && ($_POST["accion"] == 'Agregar')) {
 }
 
 $result = $test->findAll();
+$result1 = $test->findAll();
 ?>
 
 <aside class="left-sidebar" data-sidebarbg="skin6">
@@ -76,8 +77,15 @@ $result = $test->findAll();
                                 <form action="buscar" method="POST">
                                     <div class="col-auto my-1">
                                         <h3 class="mr-sm-2" for="inlineFormCustomSelect">Modulo:</h3>
-                                        <select name="rol" class="custom-select mr-sm-4" id="inlineFormCustomSelect">
-                                            <option>NA</option>
+                                        <select name="modulo" class="custom-select mr-sm-4" id="inlineFormCustomSelect">
+                                            <?php
+                                            if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) { ?>
+                                                    <option><?php echo $row['NOMBRE']; ?></option>
+                                                <?php }
+                                            } else { ?>
+                                                <option>NA</option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                     <div class="col-auto my-1">
@@ -141,10 +149,10 @@ $result = $test->findAll();
                     </div>
                     <div class="form-group">
                         <label class="mr-sm-2" for="inlineFormCustomSelect">Modulo:</label>
-                        <select name="rol" class="custom-select mr-sm-4" id="inlineFormCustomSelect">
+                        <select name="modulo" class="custom-select mr-sm-4" id="inlineFormCustomSelect">
                             <?php
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) { ?>
+                            if ($result1->num_rows > 0) {
+                                while ($row = $result1->fetch_assoc()) { ?>
                                     <option><?php echo $row['NOMBRE']; ?></option>
                                 <?php }
                             } else { ?>

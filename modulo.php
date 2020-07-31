@@ -24,6 +24,7 @@ if (isset($_POST["accion"]) && ($_POST["accion"] == 'Agregar')) {
 }
 
 $result = $test->findAll();
+$result1 = $test->findAll();
 
 ?>
 
@@ -149,8 +150,8 @@ $result = $test->findAll();
                             </select>
                             <select name="rol" class="custom-select mr-sm-4" id="inlineFormCustomSelect">
                                 <?php
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) { ?>
+                                if ($result1->num_rows > 0) {
+                                    while ($row = $result1->fetch_assoc()) { ?>
                                         <option><?php echo $row['NOMBRE']; ?></option>
                                     <?php }
                                 } else { ?>

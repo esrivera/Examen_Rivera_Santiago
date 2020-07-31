@@ -3,7 +3,6 @@
 
   class FuncionalidadService extends MainService{
 
-    private $entityName = "seg_funcionalidad";
     private $entity = "seg_modulo";
 
     function insert($nombre, $url, $descripcion, $codigo) {
@@ -18,7 +17,7 @@
     }
 
     function findByPK($codeTest) {
-        $result = $this->conex->query("SELECT * FROM test WHERE code=".$codeTest);
+        $result = $this->conex->query("SELECT * FROM seg_funcionalidad WHERE COD_FUNCIONALIDAD=".$codeTest);
         if ($result->num_rows > 0) {
             return $result->fetch_assoc();
         } else {
@@ -26,16 +25,16 @@
         }
     }
 
-    function update($nombre, $codeTest) {
-        $stmt = $this->conex->prepare("UPDATE test set name = ? WHERE code = ?");
-        $stmt->bind_param('si', $nombre, $fechaNacimiento, $codeTest);
+    function update($nombre, $url, $descripcion, $codigo, $cod) {
+        $stmt = $this->conex->prepare("UPDATE seg_funcionalidad set COD_MODULO = ?, URL_PRINCIPAL=?, NOMBRE=?, DESCRIPCION=? WHERE COD_FUNCIONALIDAD = ?");
+        $stmt->bind_param('ssssi', $codigo, $url, $nombre, $descripcion, $cod);
         $stmt->execute();
         $stmt->close();
     }
 
-    function delete($codTest) {
-        $stmt = $this->conex->prepare("DELETE FROM  test  WHERE code = ?");
-        $stmt->bind_param('i', $codeTest);
+    function delete($codeTest) {
+        $stmt = $this->conex->prepare("DELETE FROM  seg_funcionalidad  WHERE COD_FUNCIONALIDAD = ?");
+        $stmt->bind_param('S', $codeTest);
         $stmt->execute();
         $stmt->close();
     }
